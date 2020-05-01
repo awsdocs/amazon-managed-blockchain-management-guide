@@ -1,11 +1,6 @@
-## My Project
+## Amazon Managed Blockchain Management Guide
 
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
+The open source version of the [Amazon Managed Blockchain Management Guide](https://docs.aws.amazon.com/managed-blockchain/latest/managementguide/what-is-managed-blockchain.html). You can submit feedback and requests for changes by submitting issues in this repo or by making proposed changes and submitting a pull request. 
 
 ## License Summary
 
