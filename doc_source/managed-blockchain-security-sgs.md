@@ -1,6 +1,6 @@
-# Configuring Security Groups<a name="managed-blockchain-security-sgs"></a>
+# Configuring Security Groups for Hyperledger Fabric on Amazon Managed Blockchain<a name="managed-blockchain-security-sgs"></a>
 
-Security groups act as virtual firewalls\. They control inbound and outbound traffic between your Hyperledger Fabric client and Managed Blockchain network resources through the VPC endpoint in your account\. By default, security group rules are restrictive, so you must add rules that allow traffic for any resources, such as client computers, that must access the Managed Blockchain network\. The following tables list the minimum required security group rules that must be associated with the VPC endpoint and the Hyperledger Fabric client\.
+Security groups act as virtual firewalls\. They control inbound and outbound traffic between your Hyperledger Fabric client and network resources on Managed Blockchain through the VPC endpoint in your account\. By default, security group rules are restrictive, so you must add rules that allow traffic for any resources, such as client computers, that must access the network\. The following tables list the minimum required security group rules that must be associated with the VPC endpoint and the Hyperledger Fabric client\.
 
 
 **VPC Endpoint Security Group Minimum Rules**  

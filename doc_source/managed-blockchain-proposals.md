@@ -1,12 +1,12 @@
-# Work with Proposals<a name="managed-blockchain-proposals"></a>
+# Work with Proposals for a Hyperledger Fabric Network on Amazon Managed Blockchain<a name="managed-blockchain-proposals"></a>
 
-To make a change to the network in Amazon Managed Blockchain that requires consensus among network members, network members create a *proposal*\. For example, members can create a proposal to invite another AWS account to become a member, to invite multiple accounts, or to remove one or more members in different AWS accounts\.
+To make a change to a Hyperledger Fabric network on Amazon Managed Blockchain that requires consensus among network members, network members create *proposals*\. For example, a member can create a proposal to invite another AWS account to become a member, to invite multiple accounts, or to remove one or more members in different AWS accounts\.
 
-A proposal is submitted to all network members to make a Yes or No vote\. If the proposal is approved within the duration and with the percentage of Yes votes specified in the voting policy for the network, the proposed action is carried out\. The *voting policy* is established when the network is created and governs votes on all proposals\. It can't be updated after the network is created\. For more information, see [Create an Amazon Managed Blockchain Network](create-network.md)\.
+A proposal is submitted to all network members to cast a Yes or No vote\. If the proposal is approved within the duration and with the percentage of Yes votes specified in the voting policy for the network, the proposed action is carried out\. The *voting policy* is established when the network is created and governs votes on all proposals\. It can't be updated after the network is created\. For more information, see [Create a Hyperledger Fabric Blockchain Network on Amazon Managed Blockchain](create-network.md)\.
 
 ## Understanding the Proposal Lifecycle<a name="managed-blockchain-proposal-lifecycle"></a>
 
-To understand the proposal lifecycle, consider a hypothetical proposal to invite AWS account 123456789012 to join a Managed Blockchain network made by a member named Org3\. The Managed Blockchain network currently has six members: Org1, Org2, Org3, and so on\. The network was created by Org1, who specified a voting policy with a **50% approval threshold**, a **greater than** comparator, and a proposal duration of 24 hours\.
+To understand the proposal lifecycle, consider a hypothetical proposal to invite AWS account 123456789012 to join a Hyperledger Fabric network on Managed Blockchain made by a member named Org3\. The network currently has six members: Org1, Org2, Org3, and so on\. The network was created by Org1, who specified a voting policy with a **50% approval threshold**, a **greater than** comparator, and a proposal duration of 24 hours\.
 
 The following flow diagrams depict the possible outcomes of a proposal using this example:
 + [Approved with Full Vote](#approved-full)
@@ -18,33 +18,33 @@ The following flow diagrams depict the possible outcomes of a proposal using thi
 **Example – Proposal approved with full member vote**  
 For the following proposal, all members cast a vote before the duration expired\. The proposal is `APPROVED`, and an invitation is extended to the AWS account\.  
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/approved_full.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/approved_full.png)
 
 **Example – Proposal approved with partial member vote**  
 For the following proposal, not all members cast a vote before the duration expired\. However, enough Yes votes were cast to approve the proposal according to the voting policy\. The proposal is `APPROVED`, and an invitation is extended to the AWS account\.  
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/approved_partial.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/approved_partial.png)
 
 **Example – Proposal rejected with full member vote**  
 For the following proposal, all members cast a vote before the duration expired\. Because the comparator in the voting policy is **greater than**, a three\-to\-three vote does not pass the threshold for approval\. The proposal is `REJECTED`, and an invitation is not extended to the AWS account\.  
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/rejected_full.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/rejected_full.png)
 
 **Example – Proposal rejected with partial member vote**  
 For the following proposal, not all members cast a vote before the duration expired\. However, enough No votes were cast to reject the proposal according to the voting policy\. The proposal is `REJECTED`, and an invitation is extended to the AWS account\.  
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/rejected_partial.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/rejected_partial.png)
 
 **Example – Proposal expires and is not approved**  
 For the following proposal, not all members cast a vote before the duration expired, and neither the number of Yes nor No votes were cast to determine the outcome of the proposal\. The proposal is `EXPIRED`, and an invitation is not extended to the AWS account\.  
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/expired.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/expired.png)
 
 ## View Proposals<a name="managed-blockchain-proposal-view"></a>
 
 All proposals made on a network are shown on the **Proposals** page for a network\. Both **Active** proposals and **Completed** proposals are listed\. Active proposals are still open for voting\. You can also list proposals from the AWS CLI using the `list-proposals` command, or using the [ListProposals](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/APIList_Proposals.html) action with the Managed Blockchain API\.
 
-The **Proposals** page for a Network shows both **Active** and **Completed** proposals, listing the **Proposal ID**, the name of the member that created the proposal, and the **Expiration Date \(UTC\)**, which is the creation time plus the proposal duration specified in the network's voting policy\. You can choose a **Proposal ID** to vote on active proposals and to see more detail about any proposal, including the actions proposed and a voting summary by member\.
+The **Proposals** page for a network shows both **Active** and **Completed** proposals, listing the **Proposal ID**, the name of the member that created the proposal, and the **Expiration Date \(UTC\)**, which is the creation time plus the proposal duration specified in the network's voting policy\. You can choose a **Proposal ID** to vote on active proposals and to see more detail about any proposal, including the actions proposed and a voting summary by member\.
 
 Proposals have one of the following statuses:
 + `IN_PROGRESS` \- The proposal is active and open for member voting\.
@@ -126,7 +126,7 @@ Proposals have one of the following statuses:
 
 You can use the AWS Management Console, the AWS CLI `vote-on-proposal` command, or the [VoteOnProposal](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_VoteOnProposal.html) action of the Managed Blockchain API to vote Yes or No on an active proposal\. You cannot change a vote after you make it\.
 
-### To vote on a proposal using the AWS Management Console<a name="w22aac23c11b5b1"></a>
+### To vote on a proposal using the AWS Management Console<a name="w24aac24c11b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -138,7 +138,7 @@ You can use the AWS Management Console, the AWS CLI `vote-on-proposal` command, 
 
 1. When prompted, choose **Confirm**\.
 
-### To vote on a proposal using the AWS CLI<a name="w22aac23c11b5b3"></a>
+### To vote on a proposal using the AWS CLI<a name="w24aac24c11b5b3"></a>
 + Use the `vote-on-proposal` command as shown in the following example\. Replace the values of `--network-id`, `--member-id`, and `--vote` as appropriate\.
 
   ```
@@ -149,7 +149,7 @@ You can use the AWS Management Console, the AWS CLI `vote-on-proposal` command, 
 
 You can use the AWS Management Console, the AWS CLI, or the Managed Blockchain API to create an invitation proposal\.
 
-### To create an invitation proposal using the AWS Management Console<a name="w22aac23c13b5b1"></a>
+### To create an invitation proposal using the AWS Management Console<a name="w24aac24c13b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -165,7 +165,7 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 1. For each AWS account that you want to invite, enter the account number in the space provided\. Choose **Add** to enter additional accounts\.
 
-### To create an invitation proposal using the AWS CLI<a name="w22aac23c13b5b3"></a>
+### To create an invitation proposal using the AWS CLI<a name="w24aac24c13b5b3"></a>
 + Type a command similar to the following\. Replace the value of `Principal` with the AWS account ID that you want to invite\. Replace the value of `--member-id` with the value for the member in your account that submits the proposal\.
 
   ```
@@ -185,7 +185,9 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 ## Create a Proposal to Remove a Network Member<a name="managed-blockchain-propose-removal"></a>
 
-### To create a proposal to remove a member using the AWS Management Console<a name="w22aac23c15b5b1"></a>
+
+
+### To create a proposal to remove a member using the AWS Management Console<a name="w24aac24c15b5b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -201,7 +203,7 @@ The member who submits the proposal must also vote on it\. A Yes vote is not aut
 
 1. For each member that you want to remove, enter the member ID in the space provided\. Choose **Add** to enter additional members\.
 
-### To create a removal proposal using the AWS CLI<a name="w22aac23c15b5b3"></a>
+### To create a removal proposal using the AWS CLI<a name="w24aac24c15b5b3"></a>
 + Type a command similar to the following\. Replace the value of `Principal` with the AWS account ID that you want to invite\. Replace the value of `--member-id` with the value for the member in your account that submits the proposal\.
 
   ```

@@ -1,13 +1,13 @@
-# View Peer Node Properties<a name="managed-blockchain-view-peer-node"></a>
+# View Hyperledger Fabric Peer Node Properties on Amazon Managed Blockchain<a name="managed-blockchain-view-peer-node"></a>
 
-You can view information about each peer node in your member using the AWS Management Console, the AWS CLI or the Managed Blockchain API [GetNode](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_GetNode.html) command\. Details include basic information like the Managed Blockchain instance type, Availability Zone, and creation date, along with the following important properties:
+You can view information about each Hyperledger Fabric peer node that belong to your member using the AWS Management Console, the AWS CLI or the Managed Blockchain API [GetNode](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_GetNode.html) command\. Details include basic information like the Managed Blockchain instance type, Availability Zone, and creation date, along with the following important properties:
 + Status
   + **Creating**
 
     Managed Blockchain is provisioning and configuring the Managed Blockchain instance for the peer node\.
   + **Available**
 
-    The peer node is running and available on the Managed Blockchain network\.
+    The peer node is running and available on the network\.
   + **Failed**
 
     The peer node has an issue that has caused Managed Blockchain to add it to the deny list on the network\. This usually indicates that the peer node has reached memory or storage capacity\. As a first step, we recommend that you delete the instance and provision an instance with more capacity\.
@@ -30,7 +30,7 @@ You can view information about each peer node in your member using the AWS Manag
 
     Use this endpoint, including the port, within Hyperledger Fabric to address the peer node for peer channel\-based event services\.
 
-You can also view and monitor **Metrics** related to peer node performance\. For more information, see [Use Peer Node Metrics](managed-blockchain-peer-node-metrics.md)\.
+You can also view and monitor **Metrics** related to peer node performance\. For more information, see [Use Hyperledger Fabric Peer Node Metrics on Amazon Managed Blockchain](managed-blockchain-peer-node-metrics.md)\.
 
 You can check the peer node status using the `get-node` command, as shown in the following example:
 
@@ -56,6 +56,21 @@ The command returns output that includes the peer node's `PeerEndpoint` and `Pee
       },
       "Id": "nd-6EAJ5VA43JGGNPXOUZP7Y47E4Y",
       "InstanceType": "bc.t3.small",
+      "LogPublishingConfiguration": { 
+         "Fabric": { 
+            "ChaincodeLogs": { 
+               "Cloudwatch": { 
+                  "Enabled": true
+               }
+            },
+            "PeerLogs": { 
+               "Cloudwatch": { 
+                  "Enabled": true
+               }
+            }
+         }
+      },
+      "StateDB": "CouchDB"
       "Status": "AVAILABLE"
    }
 }

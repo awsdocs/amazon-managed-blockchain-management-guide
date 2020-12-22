@@ -1,6 +1,6 @@
-# Monitoring Blockchain Activity Using CloudWatch Logs<a name="monitoring-cloudwatch-logs"></a>
+# Monitoring Hyperledger Fabric on Managed Blockchain Using CloudWatch Logs<a name="monitoring-cloudwatch-logs"></a>
 
-Amazon Managed Blockchain supports publishing peer node, chaincode, and Certificate Authority \(CA\) logs to Amazon CloudWatch Logs\. You can use these logs to troubleshoot during chaincode development and to monitor network activity and errors\.
+Hyperledger Fabric on Amazon Managed Blockchain supports publishing peer node, chaincode, and Certificate Authority \(CA\) logs to Amazon CloudWatch Logs\. You can use these logs to troubleshoot during chaincode development and to monitor network activity and errors\.
 
 You can enable and view logs in the Managed Blockchain management console, in the CloudWatch Logs console, and using AWS CLI commands for CloudWatch Logs\. In addition, you can set up *metric filters* in CloudWatch Logs to turn log data into numerical CloudWatch metrics that you can graph and set an alarm on\. For each member that has logging enabled, Managed Blockchain creates a log group in CloudWatch Logs\. For more information about CloudWatch Logs, see the [Amazon CloudWatch Logs User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/)\. For more information about creating metric filters, see [Searching and Filtering Log Data](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html) in the *Amazon CloudWatch Logs User Guide*\.
 + **Peer node logs** help you debug timeout errors associated with proposals and identify rejected proposals that do not meet the endorsement policies\. Peer node logs contain messages generated when your client submits transaction proposals to peer nodes, requests to join channels, enrolls an admin peer, and lists the chaincode instances on a peer node\. Peer node logs also contain the results of chaincode installation\. You can enable and disable logs on individual peer nodes\.
@@ -8,16 +8,17 @@ You can enable and view logs in the Managed Blockchain management console, in th
 + **CA logs** help you determine when a member in your account joins the network, or when new peers register with a member CA\. You can use CA logs to debug problems related to certificates and enrollment\. CA logging can be enabled and disabled for each member\. A single log stream for the CA exists for each member\.
 
 **Note**  
-Managed Blockchain gathers CloudWatch metrics for peer nodes automatically and separately from CloudWatch Logs for CAs, peer nodes, and chaincode\. For more information, see [Use Peer Node Metrics](managed-blockchain-peer-node-metrics.md)\. 
+Managed Blockchain gathers CloudWatch metrics for peer nodes automatically and separately from CloudWatch Logs for CAs, peer nodes, and chaincode\. For more information, see [Use Hyperledger Fabric Peer Node Metrics on Amazon Managed Blockchain](managed-blockchain-peer-node-metrics.md)\. 
 
 ## Considerations and Limitations<a name="monitoring-considerations"></a>
 
-Consider the following before you enable and view CloudWatch Logs for Managed Blockchain\.
+Consider the following before you enable and view CloudWatch Logs for Hyperledger Fabric on Managed Blockchain\.
++ CA logs can be enabled only for members created after April 6, 2020\. Peer node logs and chaincode logs can be enabled only for peer nodes created after April 6, 2020\.
 + Log entries are updated every five seconds\.
 + Logging requires the service\-linked role for Managed Blockchain\. The role is created automatically when an IAM principal \(user or role\) in your account with permissions to create the service\-linked role creates a network, member, or peer\. For more information, see [Using Service\-Linked Roles for Managed Blockchain](using-service-linked-roles.md)\.
 + Logging currently does not support CloudWatch Logs encryption\.
 + Logging currently does not support CloudWatch Logs Insights\.
-+ To log chaincode events, you must first configure Go chaincode for logging\. For more information, see [Logging Control for Go Chaincodes](https://hyperledger-fabric.readthedocs.io/en/release-1.2/logging-control.html#go-chaincodes) in the Hyperledger Fabric documentation\.
++ To log chaincode events, you must first configure Go chaincode for logging\. For more information, see [Logging Control for Go Chaincodes](https://hyperledger-fabric.readthedocs.io/en/release-1.4/logging-control.html#go-chaincodes) in the Hyperledger Fabric documentation\.
 
 ## Enabling and Disabling Logs<a name="monitoring-enable"></a>
 
@@ -29,13 +30,13 @@ You can enable peer node logs, chaincode logs, or both when you create a peer no
 
 **To enable peer node or chaincode logs when you create a node**
 
-1. On the **Members** tab of the Managed Blockchain network that you are working with, under **Members owned by you**, choose the name of the member from the list, and then choose **Create peer node**\.
+1. On the **Members** tab of the network that you are working with, under **Members owned by you**, choose the name of the member from the list, and then choose **Create peer node**\.
 
 1. Under **Logging configuration**, choose **Enable peer node logs**, **Enable chaincode logs**, or both, and then choose **Create peer node**\.
 
 **To enable or disable peer node and chaincode logs for an existing member**
 
-1. On the **Members** tab of the Managed Blockchain network that you are working with, under **Members owned by you**, choose the name of the member from the list\.
+1. On the **Members** tab of the network that you are working with, under **Members owned by you**, choose the name of the member from the list\.
 
 1. Under **Peer nodes**, choose the **Node ID** of the peer\.
 
@@ -51,7 +52,7 @@ Managed Blockchain publishes logged events to CloudWatch Logs every five seconds
 
 While viewing events for any log in Managed Blockchain, you can enter a keyword or phrase in the **Search events** box to show only those events that contain the search term\. For example, you can enter a date, a date and time, or a log level such as `CRITICAL`, `DEBUG`, or `WARNING`\. When you download a log after searching, only the events filtered by your search term are downloaded\.
 
-![\[Screenshot of the log filtering UI for CA logs\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/filter_CA_logs.png)
+![\[Screenshot of the log filtering UI for CA logs\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/filter_CA_logs.png)
 
 ### Downloading Logged Events<a name="download-logs"></a>
 
@@ -81,7 +82,7 @@ Filter: "DEBUG"
 
 When viewing chaincode logs for a peer node with multiple chaincodes, you can choose the chaincode to view by choosing the chaincode name from the list next to **Logged events**\. When you download a log, only the logged events for the chaincode that you are viewing are downloaded\.
 
-![\[Screenshot of the log filtering UI for chaincode events\]](http://docs.aws.amazon.com/managed-blockchain/latest/managementguide/images/choose_chaincode_log.png)
+![\[Screenshot of the log filtering UI for chaincode events\]](http://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/images/choose_chaincode_log.png)
 
 ## Identifying Logs in CloudWatch Logs<a name="monitoring-identify-in-cloudwatch"></a>
 

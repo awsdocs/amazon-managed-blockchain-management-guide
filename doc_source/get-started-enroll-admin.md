@@ -10,6 +10,8 @@ Run the following command to copy the `managedblockchain-tls-chain.pem` to the `
 aws s3 cp s3://MyRegion.managedblockchain/etc/managedblockchain-tls-chain.pem  /home/ec2-user/managedblockchain-tls-chain.pem
 ```
 
+If the command fails with a permissions error, ensure that a service role associated with the EC2 instance allows access to the Amazon S3 bucket location\. For more information see [Example IAM Role Permissions Policy for Hyperledger Fabric Client EC2 Instance](security_iam_hyperledger_ec2_client.md)\.
+
 Run the following command to test that you copied the contents to the file correctly:
 
 ```
@@ -20,7 +22,7 @@ The command should return the contents of the certificate in human\-readable for
 
 ## Step 4\.2: Enroll the Administrative User<a name="get-started-enroll-member-enroll"></a>
 
-Managed Blockchain registers the user identity that you specified when you created the member as an administrator\. In Hyperledger Fabric, this user is known as the *bootstrap identity* because the identity is used to enroll itself\. To enroll, you need the CA endpoint, as well as the user name and password for the administrator that you created in [Step 1: Create the Network and First Member](get-started-create-network.md)\. For information about registering other user identities as administrators before you enroll them, see [Register and Enroll a User as an Administrator](managed-blockchain-hyperledger-create-admin.md)\.
+Managed Blockchain registers the user identity that you specified when you created the member as an administrator\. In Hyperledger Fabric, this user is known as the *bootstrap identity* because the identity is used to enroll itself\. To enroll, you need the CA endpoint, as well as the user name and password for the administrator that you created in [Step 1: Create the Network and First Member](get-started-create-network.md)\. For information about registering other user identities as administrators before you enroll them, see [Register and Enroll a Hyperledger Fabric Admin](managed-blockchain-hyperledger-create-admin.md)\.
 
 Use the `get-member` command to get the CA endpoint for your membership as shown in the following example\. Replace the values of `--network-id` and `--member-id` with the values returned in [Step 1: Create the Network and First Member](get-started-create-network.md)\.
 
@@ -58,7 +60,7 @@ Use the CA endpoint, administrator profile, and the certificate file to enroll t
 
 ```
 fabric-ca-client enroll \
--u https://AdminUsername:AdminPassword@SampleCAEndpointAndPort \
+-u https://AdminUsername:AdminPassword@$CASERVICEENDPOINT \
 --tls.certfiles /home/ec2-user/managedblockchain-tls-chain.pem -M /home/ec2-user/admin-msp
 ```
 
@@ -83,10 +85,10 @@ The command returns output similar to the following:
 
 ## Step 4\.3: Copy Certificates for the MSP<a name="get-started-enroll-member-copy-cert"></a>
 
-In Hyperledger Fabric, the Membership Service Provider \(MSP\) identifies which root CAs and intermediate CAs are trusted to define the members of a trust domain\. Certificates for the administrator's MSP are in `$FABRIC_CA_CLIENT_HOME`, which is `/home/ec2-user/admin-msp` in this tutorial\. Because this MSP is for the member administrator, copy the certificates from `signcerts` to `admincerts` as shown in the following example:
+In Hyperledger Fabric, the Membership Service Provider \(MSP\) identifies which root CAs and intermediate CAs are trusted to define the members of a trust domain\. Certificates for the administrator's MSP are in `/home/ec2-user/admin-msp` in this tutorial\. Because this MSP is for the member administrator, copy the certificates from `signcerts` to `admincerts` as shown in the following example\. The example assumes you are in the `/home/ec2-user` directory when running the command\.
 
 ```
-cp -r admin-msp/signcerts admin-msp/admincerts
+cp -r /home/ec2-user/admin-msp/signcerts admin-msp/admincerts
 ```
 
 **Important**  

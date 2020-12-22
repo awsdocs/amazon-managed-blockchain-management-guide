@@ -1,10 +1,10 @@
 # Create a Member and Join a Network<a name="managed-blockchain-hyperledger-create-member"></a>
 
-You can use the Managed Blockchain console, the AWS CLI, or the Managed Blockchain SDK [CreateMember](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/>API_CreateMember.html) action to create a member in a network that your account is invited to\. If you created the Managed Blockchain network, you create the first member when you create the network\. All subsequent members must be invited to join by way of a member proposal\.
+You can use the Managed Blockchain console, the AWS CLI, or the Managed Blockchain SDK [CreateMember](https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/>API_CreateMember.html) action to create a member in a network that your account is invited to\. If you created the network, you create the first member when you create the network\. All subsequent members must be invited to join by way of a member proposal\.
 
-After you create the member, for the member to be functional on the network, your account must have a VPC endpoint associated with the VPC endpoint service name published by the network\. For more information, see [Create an Interface VPC Endpoint to Connect to Managed Blockchain Network Resources](managed-blockchain-endpoints.md)\. You also must create at least one peer node in your membership\. For more information, see [Work with Peer Nodes in a Managed Blockchain Network](managed-blockchain-hyperledger-peer-nodes.md)\.
+After you create the member, for the member to be functional on the network, your account must have a VPC endpoint associated with the VPC endpoint service name published by the network\. For more information, see [Create an Interface VPC Endpoint for Hyperledger Fabric on Amazon Managed Blockchain](managed-blockchain-endpoints.md)\. You also must create at least one peer node in your membership\. For more information, see [Work with Hyperledger Fabric Peer Nodes on Managed Blockchain](managed-blockchain-hyperledger-peer-nodes.md)\.
 
-## To accept an invitation to create a member and join a network using the AWS Management Console<a name="w22aac17c15b9b1"></a>
+## To accept an invitation to create a member and join a network using the AWS Management Console<a name="w24aac18c15b9b1"></a>
 
 1. Open the Managed Blockchain console at [https://console\.aws\.amazon\.com/managedblockchain/](https://console.aws.amazon.com/managedblockchain/)\.
 
@@ -22,7 +22,7 @@ After you create the member, for the member to be functional on the network, you
 
 1. Choose **Create member**\.
 
-## To accept an invitation to create a member and join a network using the AWS CLI<a name="w22aac17c15b9b3"></a>
+## To accept an invitation to create a member and join a network using the AWS CLI<a name="w24aac18c15b9b3"></a>
 + Use the `create-member` command similar to the example below\. Replace the value of `--network-id` with the Network ID that you are joining and `--invitation-id` with the Invitation ID sent to your account from the network\.
 
   ```

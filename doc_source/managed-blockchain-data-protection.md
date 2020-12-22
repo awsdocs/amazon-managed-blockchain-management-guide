@@ -1,4 +1,4 @@
-# Data Protection for Amazon Managed Blockchain<a name="managed-blockchain-data-protection"></a>
+# Data Protection for Ethereum on Amazon Managed Blockchain<a name="managed-blockchain-data-protection"></a>
 
 Data encryption helps prevent unauthorized users from reading data from a blockchain network and the associated data storage systems\. This includes data saved to persistent media, known as *data at rest*, and data that may be intercepted as it travels the network, known as *data in transit*\.
 
@@ -10,4 +10,4 @@ Encryption at rest integrates with AWS KMS for managing the encryption key that 
 
 ## Encryption in Transit<a name="managed-blockchain-encryption-in-transit"></a>
 
-The Hyperledger Fabric certificate authority \(CA\) in each membership provides a TLS certificate authority to secure Hyperledger Fabric communication channels in the network\. For more information, see the [Fabric CA's User Guide](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.2/users-guide.html) in Hyperledger Fabric documentation\.
+The Hyperledger Fabric certificate authority \(CA\) in each membership provides a TLS certificate authority to secure Hyperledger Fabric communication channels in the network\. For more information, see the [Fabric CA's User Guide](https://hyperledger-fabric-ca.readthedocs.io/en/release-1.4/users-guide.html) in Hyperledger Fabric documentation\.
