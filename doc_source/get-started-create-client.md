@@ -58,11 +58,11 @@ While connected to the Hyperledger Fabric client using SSH, run the following co
 
 ```
 sudo yum update -y
- sudo yum install -y telnet
- sudo yum -y install emacs
- sudo yum install -y docker
- sudo service docker start
- sudo usermod -a -G docker ec2-user
+sudo yum install -y telnet
+sudo yum -y install emacs
+sudo yum install -y docker
+sudo service docker start
+sudo usermod -a -G docker ec2-user
 ```
 
 Log out and log in again for the `usermod` command to take effect\.
@@ -73,18 +73,18 @@ Run the following commands to install Docker Compose:
 sudo curl -L \
 https://github.com/docker/compose/releases/download/1.20.0/docker-compose-`uname \
 -s`-`uname -m` -o /usr/local/bin/docker-compose
- sudo chmod a+x /usr/local/bin/docker-compose
- sudo yum install libtool -y
+sudo chmod a+x /usr/local/bin/docker-compose
+sudo yum install libtool -y
 ```
 
 Run the following commands to install golang:
 
 ```
 wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
- tar -xzf go1.10.3.linux-amd64.tar.gz
- sudo mv go /usr/local
- sudo yum install libtool-ltdl-devel -y
- sudo yum install git -y
+tar -xzf go1.10.3.linux-amd64.tar.gz
+sudo mv go /usr/local
+sudo yum install libtool-ltdl-devel -y
+sudo yum install git -y
 ```
 
 Use a text editor to set up variables such as `GOROOT` and `GOPATH` in your `~/.bashrc` or `~/.bash_profile` and save the updates\. The following example shows entries in `.bash_profile`\.
